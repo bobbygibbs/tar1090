@@ -1,5 +1,5 @@
-// Some global variables are defined in early.js
-// early.js takes care of getting some history files while the html page and
+// Some global variables are defined in early_0e78a393968e26c2f1957e3fb5b073a7.js
+// early_0e78a393968e26c2f1957e3fb5b073a7.js takes care of getting some history files while the html page and
 // some javascript libraries are still loading, hopefully speeding up loading
 
 
@@ -714,11 +714,11 @@ function initialize() {
                 traces_high_res = true;
             if (receiverJson.lat != null) {
                 //console.log("receiver.json lat: " + receiverJson.lat)
-                SiteLat = receiverJson.lat;
-                SiteLon = receiverJson.lon;
-                SitePosition = [SiteLon, SiteLat];
-                DefaultCenterLat = receiverJson.lat;
-                DefaultCenterLon = receiverJson.lon;
+                //SiteLat = receiverJson.lat;
+                //SiteLon = receiverJson.lon;
+                //SitePosition = [SiteLon, SiteLat];
+                //DefaultCenterLat = receiverJson.lat;
+                //DefaultCenterLon = receiverJson.lon;
             }
             if (receiverJson.jaeroTimeout) {
                 jaeroTimeout = receiverJson.jaeroTimeout * 60;
@@ -2284,7 +2284,7 @@ function webglAddLayer() {
         alt_baro: 25000, });
     let plane = g.planes['~c0ffee'];
 
-    let spriteSrc = spritesDataURL ? spritesDataURL : 'images/sprites.png';
+    let spriteSrc = spritesDataURL ? spritesDataURL : 'images/sprites_f0c84e57a9cf2e424887b81bcd5b8a7f.png';
     //console.log(spriteSrc);
     try {
         let glStyle = {
@@ -3201,7 +3201,8 @@ function displayPhoto() {
     let photoToPull = photos[0]["thumbnail"]["src"] || photos[0]["thumbnail"];
     let linkToPicture = photos[0]["link"];
     //console.log(linkToPicture);
-    new_html = '<a class=\"link\" href="'+linkToPicture+'" target="_blank" rel="noopener noreferrer"><img id="airplanePhoto" src=' +photoToPull+'></a>';
+    new_html = '<a class=\"link\" href="'+linkToPicture+'" target="_blank" rel="noopener noreferrer"><img id="airplanePhoto" style="display: none" src=' +photoToPull+'></a>';
+    jQuery('#selected_photo').css('background-image', "url("+photoToPull+")");
     let copyright = photos[0]["photographer"] || photos[0]["user"];
     jQuery('#copyrightInfo').html("<span>Image © " + copyright +"</span>");
     setPhotoHtml(new_html);
@@ -4622,7 +4623,7 @@ function adjustInfoBlock() {
     }
     jQuery('#selected_infoblock').css("width", infoBlockWidth * globalScale + 'px');
 
-    jQuery('.ol-scale-line').css('left', (infoBlockWidth * globalScale + 8) + 'px');
+    //jQuery('.ol-scale-line').css('left', (infoBlockWidth * globalScale + 8) + 'px');
     jQuery('#replayBar').css('left', (infoBlockWidth * globalScale + 8) + 'px');
 
     if (SelectedPlane && toggles['enableInfoblock'].state) {
@@ -4661,12 +4662,16 @@ function adjustInfoBlock() {
     if (Math.abs(photoWidth / refWidth - 1) > 0.05)
         photoWidth = refWidth;
 
-    jQuery('#airplanePhoto').css("width", photoWidth + 'px');
-    jQuery('#selected_photo').css("width", photoWidth + 'px');
+/*
+    jQuery('#airplanePhoto').css("width", 'auto'); //photoWidth + 'px');
+    jQuery('#airplanePhoto').css("height", '100%');
+    jQuery('#airplanePhoto').css("max-width", '100%');
+    jQuery('#airplanePhoto').css("object-fit", 'contain');*/
+    //jQuery('#selected_photo').css("width", '100%'); //photoWidth + 'px');
 
     if (showPictures) {
         if (planespottersAPI || planespottingAPI) {
-            jQuery('#photo_container').css('height', photoWidth * 0.883 + 'px');
+            //jQuery('#photo_container').css('height', photoWidth * 0.883 + 'px');
         } else {
             jQuery('#photo_container').css('height', '40px');
         }
@@ -4674,7 +4679,7 @@ function adjustInfoBlock() {
 }
 
 function initializeUnitsSelector() {
-    // Get display unit preferences from local storage otherwise use value previously set defaults.js or config.js
+    // Get display unit preferences from local storage otherwise use value previously set defaults_b54d33fc93406ea5e2a6330fc3681dfb.js or config.js
     if (loStore.getItem('displayUnits')) {
         DisplayUnits = loStore['displayUnits'];
     }
